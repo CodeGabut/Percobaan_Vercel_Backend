@@ -14,9 +14,7 @@ let data = {
 }
 
 app.get('/', (req, res) => {
-fs.writeFile('data.json',JSON.stringify(data), (data,error) =>{
-console.log("Berhasilah pokok e") ; 
-}); 
+
 res.render('form.ejs') ; 
   
 })
