@@ -13,18 +13,14 @@ let data = {
     misal  : "Dodi"
 }
 
-app.get('/create_article', (req, res) => {
+app.get('/', (req, res) => {
 fs.writeFile('data.json',JSON.stringify(data), (data,error) =>{
 console.log("Berhasilah pokok e") ; 
 }); 
 res.render('form.ejs') ; 
   
 })
-app.post('/create_article', (req, res) => {
- console.log(req.body);
- res.send("jadi") ; 
- 
-})
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
