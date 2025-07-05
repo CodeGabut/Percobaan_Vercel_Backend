@@ -1,24 +1,31 @@
-
+const mongoose = require('mongoose');
 const fs = require("fs") ;
 const express = require('express') ; 
 const path = require('path');
 const app = express() ; 
-const port = 3000
+const port = 3000 ; 
 
+
+mongoose.connect("mongodb+srv://daffahaibanmuzakki:majalengkaraharja@cluster0.eimhiyd.mongodb.net/Percobaan").then(() => console.log("Connected to MongoDB"))
+  .catch(err => console.log("Connection error:", err));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
-let data = {
-    misal  : "Dodi"
-}
 
-app.get('/', (req, res) => {
-fs.writeFile('data.json',JSON.stringify(data), (data,error) =>{
-console.log("Berhasilah pokok e") ; 
-}); 
-res.render('form') ; 
+const mongoseSchema = new mongoose.Schema({
+  nama: String , 
+}) ; 
+
+const misal = new mongoose.model('misal',mongoseSchema)
+
+app.get('/', async (req, res) => {
+
+let data = await misal.find()
+console.log(data);
+
+res.send(data) ; 
 })
 
 
