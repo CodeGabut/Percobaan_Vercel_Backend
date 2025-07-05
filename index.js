@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
 
-res.send('woilah') ; 
+res.render('form') ; 
   
 })
 
