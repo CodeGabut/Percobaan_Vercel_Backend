@@ -9,11 +9,21 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
+let data = {
+    misal  : "Dodi"
+}
 
-
-app.get('/', (req, res) => {
-res.send("Misal")
+app.get('/create_article', (req, res) => {
+fs.writeFile('data.json',JSON.stringify(data), (data,error) =>{
+console.log("Berhasilah pokok e") ; 
+}); 
+res.render('form.ejs') ; 
   
+})
+app.post('/create_article', (req, res) => {
+ console.log(req.body);
+ res.send("jadi") ; 
+ 
 })
 
 app.listen(port, () => {
